@@ -1,0 +1,1 @@
+install(FILES castxml-config-version.cmake castxml-config.cmake castxml-targets.cmake DESTINATION castxml)
