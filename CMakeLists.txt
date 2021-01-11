@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18)
+cmake_minimum_required(VERSION 3.10)
 
 # download and package CastXML v0.3.6
 project(CastXMLCMake)
@@ -20,8 +20,10 @@ if (WIN32)
         ${CMAKE_BINARY_DIR}/castxml-windows.zip
         SHA512 ed396ebd56301a4dd4c414a02f8c41293d1ed60df0802ccf4eb1f6db63bdf7d2ddea0eb66cc5ce1e1fd244e29d446072eae9fbe9f13159fb0213772a796a10eb)
 
+    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/castxml-windows)
+
     # extract archive
-    file(ARCHIVE_EXTRACT INPUT ${CMAKE_BINARY_DIR}/castxml-windows.zip DESTINATION ${CMAKE_BINARY_DIR}/castxml-windows)
+    execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf "${CMAKE_BINARY_DIR}/castxml-windows.zip" WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/castxml-windows")
 
     # install the archive's files
     install(DIRECTORY ${CMAKE_BINARY_DIR}/castxml-windows DESTINATION castxml)
@@ -34,8 +36,10 @@ else()
         ${CMAKE_BINARY_DIR}/castxml-linux.tar.gz
         SHA512 85514042f024c705ea9647b4830ac5e58c83167792c2cfe9edab6ea4af52b0f8cb967ff53c5bfee6f8d6096f4de6a83c95d67c538f6fc0c537bc596948817585)
 
+    file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/castxml-linux)
+
     # extract archive
-    file(ARCHIVE_EXTRACT INPUT ${CMAKE_BINARY_DIR}/castxml-windows.zip DESTINATION ${CMAKE_BINARY_DIR}/castxml-linux)
+    execute_process(COMMAND ${CMAKE_COMMAND} -E tar xvf "${CMAKE_BINARY_DIR}/castxml-linux.tar.gz" WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/castxml-linux")
 
     # install the archive's files
     install(DIRECTORY ${CMAKE_BINARY_DIR}/castxml-linux DESTINATION castxml)
