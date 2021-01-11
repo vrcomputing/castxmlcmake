@@ -1,7 +1,11 @@
 if (WIN32)	
-	find_program(castxml_EXECUTABLE NAMES castxml PATHS ${castxml_DIR}/castxml-windows/bin NO_DEFAULT_PATH)
+	find_program(castxml_EXECUTABLE NAMES castxml PATHS ${castxml_DIR}/castxml-windows/castxml/bin NO_DEFAULT_PATH)
 else()
-	find_program(castxml_EXECUTABLE NAMES castxml PATHS ${castxml_DIR}/castxml-linux/bin NO_DEFAULT_PATH)
+	find_program(castxml_EXECUTABLE NAMES castxml PATHS ${castxml_DIR}/castxml-linux/castxml/bin NO_DEFAULT_PATH)
+endif()
+
+if(NOT castxml_EXECUTABLE)
+	message(FATAL_ERROR "castxml_EXECUTABLE not found")
 endif()
 
 add_executable(castxml IMPORTED)
